@@ -2,6 +2,7 @@ delete from sys_user;
 delete from sys_role;
 delete from sys_resource;
 delete from sys_organization;
+delete from oauth2_client;
 
 insert into sys_user values(1,1,'admin','d3c59d25033dbf980d29554025c23a75','8d78869f470951332959580424d4bf4f', '1', false);
 insert into sys_organization values(1, '总公司', 0, '0/', true);
@@ -36,3 +37,4 @@ insert into sys_resource values(44, '角色删除', 'button', '', 41, '0/1/41/',
 insert into sys_resource values(45, '角色查看', 'button', '', 41, '0/1/41/', 'role:view', true);
 
 insert into sys_role values(1, 'admin', '超级管理员', '11,21,31,41', true);
+insert into oauth2_client values(1,'chapter17-client','c1ebe466-1cdc-4bd3-ab69-77c3561b9dee','d8346ea2-6017-43ed-ad68-19c0f971738b');
