@@ -8,14 +8,13 @@
 </head>
 <body>
 
-<iframe name="content" class="ui-layout-center"
-        src="${pageContext.request.contextPath}/welcome" frameborder="0" scrolling="auto"></iframe>
+<iframe name="content" class="ui-layout-center" src="${pageContext.request.contextPath}/welcome" frameborder="0" scrolling="auto">
+</iframe>
 <div class="ui-layout-north">欢迎[<shiro:principal/>]使用统一认证授权平台，<a href="${pageContext.request.contextPath}/logout">退出</a></div>
 <div class="ui-layout-south">
      开发完善中。。。。。。
 </div>
 <div class="ui-layout-west">
-    功能菜单<br/>
     <c:forEach items="${menus}" var="m">
         <a href="${pageContext.request.contextPath}/${m.url}" target="content">${m.name}</a><br/>
     </c:forEach>

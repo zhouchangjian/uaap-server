@@ -66,10 +66,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</head>\n");
       out.write("<body>\n");
       out.write("\n");
-      out.write("<iframe name=\"content\" class=\"ui-layout-center\"\n");
-      out.write("        src=\"");
+      out.write("<iframe name=\"content\" class=\"ui-layout-center\" src=\"");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/welcome\" frameborder=\"0\" scrolling=\"auto\"></iframe>\n");
+      out.write("/welcome\" frameborder=\"0\" scrolling=\"auto\">\n");
+      out.write("</iframe>\n");
       out.write("<div class=\"ui-layout-north\">欢迎[");
       if (_jspx_meth_shiro_principal_0(_jspx_page_context))
         return;
@@ -80,7 +80,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("     开发完善中。。。。。。\n");
       out.write("</div>\n");
       out.write("<div class=\"ui-layout-west\">\n");
-      out.write("    功能菜单<br/>\n");
       out.write("    ");
       if (_jspx_meth_c_forEach_0(_jspx_page_context))
         return;
