@@ -33,12 +33,14 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) {
         //加密密码
         passwordHelper.encryptPassword(user);
-        return userDao.createUser(user);
+        //return userDao.createUser(user);
+        return null;
     }
 
     @Override
     public User updateUser(User user) {
-        return userDao.updateUser(user);
+        //return userDao.updateUser(user);
+    	return null;
     }
 
     @Override

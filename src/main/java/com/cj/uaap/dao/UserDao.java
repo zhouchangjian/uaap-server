@@ -5,20 +5,49 @@ import java.util.List;
 import com.cj.uaap.entity.User;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 作者：z_changjiang
+ * 日期：2014-11-30
+ * 描述：用户信息持久化接口
+ *
  */
+@MyBatisRepository
 public interface UserDao {
 
-    public User createUser(User user);
-    public User updateUser(User user);
+	/**
+	 * 作者：z_changjiang
+	 * 日期：2014-11-30
+	 * 描述：实现用户实体新增
+	 */
+    public void createUser(User user);
+    /**
+     * 作者：z_changjiang
+     * 日期：2014-11-30
+     * 描述：实现用户实体修改
+     */
+    public void updateUser(User user);
+    /**
+     * 作者：z_changjiang
+     * 日期：2014-11-30
+     * 描述：实现用户实体删除
+     */
     public void deleteUser(Long userId);
-
-    User findOne(Long userId);
-
-    List<User> findAll();
-
-    User findByUsername(String username);
+    /**
+     * 作者：z_changjiang
+     * 日期：2014-11-30
+     * 描述：根据用户标识查询用户
+     */
+    public User findOne(Long userId);
+    /**
+     * 作者：z_changjiang
+     * 日期：2014-11-30
+     * 描述：查询所有用户
+     */
+    public List<User> findAll();
+    /**
+     * 作者：z_changjiang
+     * 日期：2014-11-30
+     * 描述：根据用户名称返回用户
+     */
+    public User findByUsername(String username);
 
 }
