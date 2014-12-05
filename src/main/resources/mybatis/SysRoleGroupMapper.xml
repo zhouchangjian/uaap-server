@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.uaap.dao.SysRoleGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.uaap.entity.SysRoleGroup" >
+    <id column="ROLE_GROUP_ID" property="roleGroupId" jdbcType="BIGINT" />
+    <result column="ROLE_GROUP_NAME" property="roleGroupName" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="BIGINT" />
+    <result column="ROLE_GROUP_DESC" property="roleGroupDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ROLE_GROUP_ID, ROLE_GROUP_NAME, PARENT_ID, ROLE_GROUP_DESC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_ROLE_GROUP
+    where ROLE_GROUP_ID = #{roleGroupId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SYS_ROLE_GROUP
+    where ROLE_GROUP_ID = #{roleGroupId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysRoleGroup" >
+    insert into SYS_ROLE_GROUP (ROLE_GROUP_ID, ROLE_GROUP_NAME, PARENT_ID, 
+      ROLE_GROUP_DESC)
+    values (#{roleGroupId,jdbcType=BIGINT}, #{roleGroupName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{roleGroupDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cj.uaap.entity.SysRoleGroup" >
+    insert into SYS_ROLE_GROUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleGroupId != null" >
+        ROLE_GROUP_ID,
+      </if>
+      <if test="roleGroupName != null" >
+        ROLE_GROUP_NAME,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="roleGroupDesc != null" >
+        ROLE_GROUP_DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleGroupId != null" >
+        #{roleGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="roleGroupName != null" >
+        #{roleGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="roleGroupDesc != null" >
+        #{roleGroupDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.uaap.entity.SysRoleGroup" >
+    update SYS_ROLE_GROUP
+    <set >
+      <if test="roleGroupName != null" >
+        ROLE_GROUP_NAME = #{roleGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="roleGroupDesc != null" >
+        ROLE_GROUP_DESC = #{roleGroupDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ROLE_GROUP_ID = #{roleGroupId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cj.uaap.entity.SysRoleGroup" >
+    update SYS_ROLE_GROUP
+    set ROLE_GROUP_NAME = #{roleGroupName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=BIGINT},
+      ROLE_GROUP_DESC = #{roleGroupDesc,jdbcType=VARCHAR}
+    where ROLE_GROUP_ID = #{roleGroupId,jdbcType=BIGINT}
+  </update>
+</mapper>

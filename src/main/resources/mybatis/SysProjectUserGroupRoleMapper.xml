@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.uaap.dao.SysProjectUserGroupRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.uaap.entity.SysProjectUserGroupRole" >
+    <id column="PROJECT_USER_GROUP_ROLE_ID" property="projectUserGroupRoleId" jdbcType="BIGINT" />
+    <result column="PROJECT_USER_GROUP_ID" property="projectUserGroupId" jdbcType="BIGINT" />
+    <result column="ROLE_ID" property="roleId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PROJECT_USER_GROUP_ROLE_ID, PROJECT_USER_GROUP_ID, ROLE_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_PROJECT_USER_GROUP_ROLE
+    where PROJECT_USER_GROUP_ROLE_ID = #{projectUserGroupRoleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SYS_PROJECT_USER_GROUP_ROLE
+    where PROJECT_USER_GROUP_ROLE_ID = #{projectUserGroupRoleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysProjectUserGroupRole" >
+    insert into SYS_PROJECT_USER_GROUP_ROLE (PROJECT_USER_GROUP_ROLE_ID, PROJECT_USER_GROUP_ID, 
+      ROLE_ID)
+    values (#{projectUserGroupRoleId,jdbcType=BIGINT}, #{projectUserGroupId,jdbcType=BIGINT}, 
+      #{roleId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cj.uaap.entity.SysProjectUserGroupRole" >
+    insert into SYS_PROJECT_USER_GROUP_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectUserGroupRoleId != null" >
+        PROJECT_USER_GROUP_ROLE_ID,
+      </if>
+      <if test="projectUserGroupId != null" >
+        PROJECT_USER_GROUP_ID,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectUserGroupRoleId != null" >
+        #{projectUserGroupRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="projectUserGroupId != null" >
+        #{projectUserGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.uaap.entity.SysProjectUserGroupRole" >
+    update SYS_PROJECT_USER_GROUP_ROLE
+    <set >
+      <if test="projectUserGroupId != null" >
+        PROJECT_USER_GROUP_ID = #{projectUserGroupId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where PROJECT_USER_GROUP_ROLE_ID = #{projectUserGroupRoleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cj.uaap.entity.SysProjectUserGroupRole" >
+    update SYS_PROJECT_USER_GROUP_ROLE
+    set PROJECT_USER_GROUP_ID = #{projectUserGroupId,jdbcType=BIGINT},
+      ROLE_ID = #{roleId,jdbcType=BIGINT}
+    where PROJECT_USER_GROUP_ROLE_ID = #{projectUserGroupRoleId,jdbcType=BIGINT}
+  </update>
+</mapper>

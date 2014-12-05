@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.uaap.dao.SysElementResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.uaap.entity.SysElementResource" >
+    <id column="ELEMENT_RESOURCE_ID" property="elementResourceId" jdbcType="BIGINT" />
+    <result column="ELEMENT_RESOURCE_NAME" property="elementResourceName" jdbcType="VARCHAR" />
+    <result column="ELEMENT_RESOURCE_CODE" property="elementResourceCode" jdbcType="VARCHAR" />
+    <result column="PERMIT_ID" property="permitId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ELEMENT_RESOURCE_ID, ELEMENT_RESOURCE_NAME, ELEMENT_RESOURCE_CODE, PERMIT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_ELEMENT_RESOURCE
+    where ELEMENT_RESOURCE_ID = #{elementResourceId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SYS_ELEMENT_RESOURCE
+    where ELEMENT_RESOURCE_ID = #{elementResourceId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysElementResource" >
+    insert into SYS_ELEMENT_RESOURCE (ELEMENT_RESOURCE_ID, ELEMENT_RESOURCE_NAME, 
+      ELEMENT_RESOURCE_CODE, PERMIT_ID)
+    values (#{elementResourceId,jdbcType=BIGINT}, #{elementResourceName,jdbcType=VARCHAR}, 
+      #{elementResourceCode,jdbcType=VARCHAR}, #{permitId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cj.uaap.entity.SysElementResource" >
+    insert into SYS_ELEMENT_RESOURCE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="elementResourceId != null" >
+        ELEMENT_RESOURCE_ID,
+      </if>
+      <if test="elementResourceName != null" >
+        ELEMENT_RESOURCE_NAME,
+      </if>
+      <if test="elementResourceCode != null" >
+        ELEMENT_RESOURCE_CODE,
+      </if>
+      <if test="permitId != null" >
+        PERMIT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="elementResourceId != null" >
+        #{elementResourceId,jdbcType=BIGINT},
+      </if>
+      <if test="elementResourceName != null" >
+        #{elementResourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="elementResourceCode != null" >
+        #{elementResourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="permitId != null" >
+        #{permitId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.uaap.entity.SysElementResource" >
+    update SYS_ELEMENT_RESOURCE
+    <set >
+      <if test="elementResourceName != null" >
+        ELEMENT_RESOURCE_NAME = #{elementResourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="elementResourceCode != null" >
+        ELEMENT_RESOURCE_CODE = #{elementResourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="permitId != null" >
+        PERMIT_ID = #{permitId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ELEMENT_RESOURCE_ID = #{elementResourceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cj.uaap.entity.SysElementResource" >
+    update SYS_ELEMENT_RESOURCE
+    set ELEMENT_RESOURCE_NAME = #{elementResourceName,jdbcType=VARCHAR},
+      ELEMENT_RESOURCE_CODE = #{elementResourceCode,jdbcType=VARCHAR},
+      PERMIT_ID = #{permitId,jdbcType=BIGINT}
+    where ELEMENT_RESOURCE_ID = #{elementResourceId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.uaap.dao.SysProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.uaap.entity.SysProject" >
+    <id column="PROJECT_ID" property="projectId" jdbcType="BIGINT" />
+    <result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR" />
+    <result column="PROJECT_KEY" property="projectKey" jdbcType="VARCHAR" />
+    <result column="PROJECT_SECRET" property="projectSecret" jdbcType="VARCHAR" />
+    <result column="PROJECT_DESC" property="projectDesc" jdbcType="VARCHAR" />
+    <result column="OWNER_ID" property="ownerId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PROJECT_ID, PROJECT_NAME, PROJECT_KEY, PROJECT_SECRET, PROJECT_DESC, OWNER_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_PROJECT
+    where PROJECT_ID = #{projectId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SYS_PROJECT
+    where PROJECT_ID = #{projectId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysProject" useGeneratedKeys="true" keyProperty="projectId">
+    insert into SYS_PROJECT (PROJECT_ID, PROJECT_NAME, PROJECT_KEY, 
+      PROJECT_SECRET, PROJECT_DESC, OWNER_ID
+      )
+    values (#{projectId,jdbcType=BIGINT}, #{projectName,jdbcType=VARCHAR}, #{projectKey,jdbcType=VARCHAR}, 
+      #{projectSecret,jdbcType=VARCHAR}, #{projectDesc,jdbcType=VARCHAR}, #{ownerId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cj.uaap.entity.SysProject" >
+    insert into SYS_PROJECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME,
+      </if>
+      <if test="projectKey != null" >
+        PROJECT_KEY,
+      </if>
+      <if test="projectSecret != null" >
+        PROJECT_SECRET,
+      </if>
+      <if test="projectDesc != null" >
+        PROJECT_DESC,
+      </if>
+      <if test="ownerId != null" >
+        OWNER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectKey != null" >
+        #{projectKey,jdbcType=VARCHAR},
+      </if>
+      <if test="projectSecret != null" >
+        #{projectSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="projectDesc != null" >
+        #{projectDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.uaap.entity.SysProject" >
+    update SYS_PROJECT
+    <set >
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectKey != null" >
+        PROJECT_KEY = #{projectKey,jdbcType=VARCHAR},
+      </if>
+      <if test="projectSecret != null" >
+        PROJECT_SECRET = #{projectSecret,jdbcType=VARCHAR},
+      </if>
+      <if test="projectDesc != null" >
+        PROJECT_DESC = #{projectDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        OWNER_ID = #{ownerId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where PROJECT_ID = #{projectId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cj.uaap.entity.SysProject" >
+    update SYS_PROJECT
+    set PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      PROJECT_KEY = #{projectKey,jdbcType=VARCHAR},
+      PROJECT_SECRET = #{projectSecret,jdbcType=VARCHAR},
+      PROJECT_DESC = #{projectDesc,jdbcType=VARCHAR},
+      OWNER_ID = #{ownerId,jdbcType=BIGINT}
+    where PROJECT_ID = #{projectId,jdbcType=BIGINT}
+  </update>
+</mapper>

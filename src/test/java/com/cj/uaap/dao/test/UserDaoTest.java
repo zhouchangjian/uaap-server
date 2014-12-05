@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import com.cj.uaap.dao.SysProjectMapper;
 import com.cj.uaap.dao.UserDao;
+import com.cj.uaap.entity.SysProject;
 import com.cj.uaap.entity.User;
 @ContextConfiguration(locations = { "/spring-config.xml" })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -22,6 +24,8 @@ public class UserDaoTest extends AbstractJUnit4SpringContextTests{
 	Logger loger = LoggerFactory.getLogger(UserDaoTest.class);
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private SysProjectMapper sysProjectMapper;
 	@Test
 	public void test001UserDaoIsNull() throws Exception {
 		assertNotNull("userDao not found", userDao);
@@ -59,5 +63,20 @@ public class UserDaoTest extends AbstractJUnit4SpringContextTests{
 		user =  userDao.findOne(Long.valueOf(1));
 		assertEquals(Long.valueOf(12213),user.getOwnerId());
 		loger.info("test005UpdateUser");
+	}
+	@Test
+	public void test006SysProjectMapperIsNull() throws Exception {
+		assertNotNull("userDao not found", sysProjectMapper);
+	}
+	@Test
+	public void test007Insert() throws Exception {
+		SysProject sysProject = new SysProject();
+		sysProject.setOwnerId(Long.valueOf(11221));
+		sysProject.setProjectDesc("test");
+		sysProject.setProjectKey("111");
+		sysProject.setProjectName("2312");
+		sysProject.setProjectSecret("31231");
+		sysProjectMapper.insert(sysProject);
+		assertNotNull("projectId is not null",sysProject.getProjectId());
 	}
 }

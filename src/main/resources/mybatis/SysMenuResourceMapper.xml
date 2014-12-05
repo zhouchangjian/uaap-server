@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.uaap.dao.SysMenuResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.uaap.entity.SysMenuResource" >
+    <id column="MENU_RESOURCE_ID" property="menuResourceId" jdbcType="BIGINT" />
+    <result column="MENU_RESOURCE_NAME" property="menuResourceName" jdbcType="VARCHAR" />
+    <result column="MENU_RESOURCE_URL" property="menuResourceUrl" jdbcType="VARCHAR" />
+    <result column="PERMIT_ID" property="permitId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MENU_RESOURCE_ID, MENU_RESOURCE_NAME, MENU_RESOURCE_URL, PERMIT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_MENU_RESOURCE
+    where MENU_RESOURCE_ID = #{menuResourceId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SYS_MENU_RESOURCE
+    where MENU_RESOURCE_ID = #{menuResourceId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysMenuResource" >
+    insert into SYS_MENU_RESOURCE (MENU_RESOURCE_ID, MENU_RESOURCE_NAME, 
+      MENU_RESOURCE_URL, PERMIT_ID)
+    values (#{menuResourceId,jdbcType=BIGINT}, #{menuResourceName,jdbcType=VARCHAR}, 
+      #{menuResourceUrl,jdbcType=VARCHAR}, #{permitId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cj.uaap.entity.SysMenuResource" >
+    insert into SYS_MENU_RESOURCE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuResourceId != null" >
+        MENU_RESOURCE_ID,
+      </if>
+      <if test="menuResourceName != null" >
+        MENU_RESOURCE_NAME,
+      </if>
+      <if test="menuResourceUrl != null" >
+        MENU_RESOURCE_URL,
+      </if>
+      <if test="permitId != null" >
+        PERMIT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuResourceId != null" >
+        #{menuResourceId,jdbcType=BIGINT},
+      </if>
+      <if test="menuResourceName != null" >
+        #{menuResourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuResourceUrl != null" >
+        #{menuResourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="permitId != null" >
+        #{permitId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.uaap.entity.SysMenuResource" >
+    update SYS_MENU_RESOURCE
+    <set >
+      <if test="menuResourceName != null" >
+        MENU_RESOURCE_NAME = #{menuResourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuResourceUrl != null" >
+        MENU_RESOURCE_URL = #{menuResourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="permitId != null" >
+        PERMIT_ID = #{permitId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where MENU_RESOURCE_ID = #{menuResourceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cj.uaap.entity.SysMenuResource" >
+    update SYS_MENU_RESOURCE
+    set MENU_RESOURCE_NAME = #{menuResourceName,jdbcType=VARCHAR},
+      MENU_RESOURCE_URL = #{menuResourceUrl,jdbcType=VARCHAR},
+      PERMIT_ID = #{permitId,jdbcType=BIGINT}
+    where MENU_RESOURCE_ID = #{menuResourceId,jdbcType=BIGINT}
+  </update>
+</mapper>

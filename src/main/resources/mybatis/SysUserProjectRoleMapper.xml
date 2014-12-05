@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cj.uaap.dao.SysUserProjectRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.cj.uaap.entity.SysUserProjectRole" >
+    <id column="USER_PROJECT_ROLE_ID" property="userProjectRoleId" jdbcType="BIGINT" />
+    <result column="USER_PROJECT_ID" property="userProjectId" jdbcType="BIGINT" />
+    <result column="ROLE_ID" property="roleId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_PROJECT_ROLE_ID, USER_PROJECT_ID, ROLE_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_USER_PROJECT_ROLE
+    where USER_PROJECT_ROLE_ID = #{userProjectRoleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SYS_USER_PROJECT_ROLE
+    where USER_PROJECT_ROLE_ID = #{userProjectRoleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysUserProjectRole" >
+    insert into SYS_USER_PROJECT_ROLE (USER_PROJECT_ROLE_ID, USER_PROJECT_ID, ROLE_ID
+      )
+    values (#{userProjectRoleId,jdbcType=BIGINT}, #{userProjectId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cj.uaap.entity.SysUserProjectRole" >
+    insert into SYS_USER_PROJECT_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userProjectRoleId != null" >
+        USER_PROJECT_ROLE_ID,
+      </if>
+      <if test="userProjectId != null" >
+        USER_PROJECT_ID,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userProjectRoleId != null" >
+        #{userProjectRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="userProjectId != null" >
+        #{userProjectId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cj.uaap.entity.SysUserProjectRole" >
+    update SYS_USER_PROJECT_ROLE
+    <set >
+      <if test="userProjectId != null" >
+        USER_PROJECT_ID = #{userProjectId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where USER_PROJECT_ROLE_ID = #{userProjectRoleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cj.uaap.entity.SysUserProjectRole" >
+    update SYS_USER_PROJECT_ROLE
+    set USER_PROJECT_ID = #{userProjectId,jdbcType=BIGINT},
+      ROLE_ID = #{roleId,jdbcType=BIGINT}
+    where USER_PROJECT_ROLE_ID = #{userProjectRoleId,jdbcType=BIGINT}
+  </update>
+</mapper>

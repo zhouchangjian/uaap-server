@@ -1,9 +1,4 @@
 drop table if exists sys_user;
-drop table if exists sys_organization;
-drop table if exists sys_resource;
-drop table if exists sys_role;
-
-drop table if exists sys_user;
 drop table if exists sys_project;
 drop table if exists sys_user_project;
 drop table if exists sys_project_user_group;
