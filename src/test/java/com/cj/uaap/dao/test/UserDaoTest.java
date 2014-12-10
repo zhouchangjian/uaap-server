@@ -1,10 +1,6 @@
 package com.cj.uaap.dao.test;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
-
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -17,7 +13,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import com.cj.uaap.dao.SysProjectMapper;
 import com.cj.uaap.dao.UserDao;
 import com.cj.uaap.entity.SysProject;
-import com.cj.uaap.entity.User;
+import com.cj.uaap.entity.User;  
 @ContextConfiguration(locations = { "/spring-config.xml" })
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class UserDaoTest extends AbstractJUnit4SpringContextTests{
@@ -77,6 +73,7 @@ public class UserDaoTest extends AbstractJUnit4SpringContextTests{
 		sysProject.setProjectName("2312");
 		sysProject.setProjectSecret("31231");
 		sysProjectMapper.insert(sysProject);
+		loger.info("test007Insert");
 		assertNotNull("projectId is not null",sysProject.getProjectId());
 	}
 }
