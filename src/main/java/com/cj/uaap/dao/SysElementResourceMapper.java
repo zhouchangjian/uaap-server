@@ -1,7 +1,7 @@
 package com.cj.uaap.dao;
 
 import com.cj.uaap.entity.SysElementResource;
-@MyBatisRepository
+@MyBatisRepository 
 public interface SysElementResourceMapper {
     int deleteByPrimaryKey(Long elementResourceId);
 

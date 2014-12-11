@@ -21,7 +21,7 @@
     delete from SYS_PROJECT_USER_GROUP
     where PROJECT_USER_GROUP_ID = #{projectUserGroupId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.cj.uaap.entity.SysProjectUserGroup" >
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysProjectUserGroup" useGeneratedKeys="true" keyProperty="projectUserGroupId">
     insert into SYS_PROJECT_USER_GROUP (PROJECT_USER_GROUP_ID, PROJECT_ID, USER_PROJECT_GROUP_NAME, 
       PARENT_ID, USER_PROJECT_GROUP_DESC)
     values (#{projectUserGroupId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{userProjectGroupName,jdbcType=VARCHAR}, 

@@ -3,6 +3,7 @@ package com.cj.uaap.service;
 import java.util.List;
 import java.util.Set;
 
+import com.cj.uaap.entity.SysProjectUserGroup;
 import com.cj.uaap.entity.SysUser;
 /**
  * 作者：z_changjiang
@@ -53,4 +54,24 @@ public interface SysUserService {
      * 描述：根据用户名称查询用户
      */
     public SysUser findByUsername(String username);
+    
+    /**
+     * 作者：z_changjiang
+     * 日期：2014年12月11日
+     * 描述：创建用户组
+     */
+    public SysProjectUserGroup createSysProjectUserGroup(SysProjectUserGroup sysProjectUserGroup);
+    /**
+     * 作者：z_changjiang
+     * 日期：2014年12月11日
+     * 描述：修改用户组
+     */
+    public SysProjectUserGroup updateSysProjectUserGroup(SysProjectUserGroup sysProjectUserGroup);
+    /**
+     * 作者：z_changjiang
+     * 日期：2014年12月11日
+     * 描述：查询用户组
+     */
+    public SysProjectUserGroup findSysProjectUserGroup(Long userId);
+    
 }

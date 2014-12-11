@@ -28,7 +28,7 @@
     delete from SYS_USER
     where USER_ID = #{userId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.cj.uaap.entity.SysUser" >
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysUser" useGeneratedKeys="true" keyProperty="userId">
     insert into SYS_USER (USER_ID, USERNAME, PASSWORD, 
       SALT, LOCKED, OWNER_ID
       )

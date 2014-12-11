@@ -3,7 +3,10 @@ package com.cj.uaap.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cj.uaap.dao.SysProjectUserGroupMapper;
 import com.cj.uaap.dao.SysUserMapper;
+import com.cj.uaap.entity.SysProject;
+import com.cj.uaap.entity.SysProjectUserGroup;
 import com.cj.uaap.entity.SysUser;
 
 /**
@@ -16,6 +19,8 @@ import com.cj.uaap.entity.SysUser;
 public class SysUserServiceImpl implements SysUserService {
 	@Autowired
 	private SysUserMapper sysUserMapper;
+	@Autowired
+	private SysProjectUserGroupMapper sysProjectUserGroupMapper;
 	@Override
 	public SysUser createUser(SysUser sysUser) {
 		this.sysUserMapper.insert(sysUser);
@@ -52,7 +57,24 @@ public class SysUserServiceImpl implements SysUserService {
 		return this.sysUserMapper.selectByUsername(username);
 	}
 
-	
+	@Override
+	public SysProjectUserGroup createSysProjectUserGroup(
+			SysProjectUserGroup sysProjectUserGroup) {
+		this.sysProjectUserGroupMapper.insert(sysProjectUserGroup);
+		return sysProjectUserGroup;
+	}
+
+	@Override
+	public SysProjectUserGroup updateSysProjectUserGroup(
+			SysProjectUserGroup sysProjectUserGroup) {
+		this.sysProjectUserGroupMapper.updateByPrimaryKey(sysProjectUserGroup);
+		return sysProjectUserGroup;
+	}
+
+	@Override
+	public SysProjectUserGroup findSysProjectUserGroup(Long userId) {
+		return this.sysProjectUserGroupMapper.selectByPrimaryKey(userId);
+	}
 	public SysUserMapper getSysUserMapper() {
 		return sysUserMapper;
 	}
@@ -60,4 +82,14 @@ public class SysUserServiceImpl implements SysUserService {
 	public void setSysUserMapper(SysUserMapper sysUserMapper) {
 		this.sysUserMapper = sysUserMapper;
 	}
+
+	public SysProjectUserGroupMapper getSysProjectUserGroupMapper() {
+		return sysProjectUserGroupMapper;
+	}
+
+	public void setSysProjectUserGroupMapper(
+			SysProjectUserGroupMapper sysProjectUserGroupMapper) {
+		this.sysProjectUserGroupMapper = sysProjectUserGroupMapper;
+	}
+
 }
