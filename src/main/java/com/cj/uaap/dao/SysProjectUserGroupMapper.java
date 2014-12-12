@@ -1,5 +1,7 @@
 package com.cj.uaap.dao;
 
+import java.util.List;
+
 import com.cj.uaap.entity.SysProjectUserGroup;
 @MyBatisRepository
 public interface SysProjectUserGroupMapper {
@@ -14,4 +16,6 @@ public interface SysProjectUserGroupMapper {
     int updateByPrimaryKeySelective(SysProjectUserGroup record);
 
     int updateByPrimaryKey(SysProjectUserGroup record);
+    
+    List<SysProjectUserGroup> queryByparentId(Long parentId);
 }

@@ -1,5 +1,8 @@
 package com.cj.uaap.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SysProjectUserGroup {
     private Long projectUserGroupId;
 
@@ -10,6 +13,10 @@ public class SysProjectUserGroup {
     private Long parentId;
 
     private String userProjectGroupDesc;
+    /**
+     * 下级用户组
+     */
+    private List<SysProjectUserGroup> childrens = new ArrayList<SysProjectUserGroup>();
 
     public Long getProjectUserGroupId() {
         return projectUserGroupId;
@@ -50,4 +57,12 @@ public class SysProjectUserGroup {
     public void setUserProjectGroupDesc(String userProjectGroupDesc) {
         this.userProjectGroupDesc = userProjectGroupDesc == null ? null : userProjectGroupDesc.trim();
     }
+
+	public List<SysProjectUserGroup> getChildrens() {
+		return childrens;
+	}
+
+	public void setChildrens(List<SysProjectUserGroup> childrens) {
+		this.childrens = childrens;
+	}
 }

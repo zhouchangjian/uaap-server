@@ -1,61 +1,45 @@
 package com.cj.uaap.service;
 
 import java.util.List;
-import java.util.Set;
 
+import com.cj.uaap.entity.SysProject;
 import com.cj.uaap.entity.SysProjectUserGroup;
-import com.cj.uaap.entity.SysUser;
+import com.cj.uaap.entity.SysUserProject;
+
 /**
  * 作者：z_changjiang
- * 日期：2014-12-10
- * 描述：实现用户管理操作
+ * 日期：2014-12-12
+ * 描述：实现项目管理功能
  *
  */
-public interface SysUserService {
+public interface SysProjectService {
+	/**
+	 * 作者：z_changjiang
+	 * 日期：2014-12-12
+	 * 描述：创建项目
+	 */
+	public SysProject createSysProject(SysProject sysProject);
 
-    /**
-     * 作者：z_changjiang
-     * 日期：2014-12-10
-     * 描述：创建用户
-     */
-    public SysUser createUser(SysUser sysUser);
-
-    /**
-     * 作者：z_changjiang
-     * 日期：2014-12-10
-     * 描述：修改用户
-     */
-    public SysUser updateUser(SysUser sysUser);
-
-    /**
-     * 作者：z_changjiang
-     * 日期：2014-12-10
-     * 描述：删除用户
-     */
-    public void deleteUser(Long userId);
-
-    /**
-     * 作者：z_changjiang
-     * 日期：2014-12-10
-     * 描述：修改密码
-     */
-    public void changePassword(Long userId, String newPassword);
-
-    /**
-     * 作者：z_changjiang
-     * 日期：2014-12-10
-     * 描述：查询用户
-     */
-    public SysUser findSysUser(Long userId);
-
-    /**
-     * 作者：z_changjiang
-     * 日期：2014-12-10
-     * 描述：根据用户名称查询用户
-     */
-    public SysUser findByUsername(String username);
-    
-    /**
+	/**
+	 * 作者：z_changjiang
+	 * 日期：2014-12-12
+	 * 描述：修改项目
+	 */
+	public SysProject updateSysProject(SysProject sysProject);
+	/**
+	 * 作者：z_changjiang
+	 * 日期：2014-12-12
+	 * 描述：删除项目 
+	 */
+	public void deleteSysProject(Long projectId);
+	/**
+	 * 作者：z_changjiang
+	 * 日期：2014-12-12
+	 * 描述：根据项目标志查询项目
+	 */
+	public SysProject findSysProject(Long projectId); 
+	
+	 /**
      * 作者：z_changjiang
      * 日期：2014年12月11日
      * 描述：创建用户组
@@ -89,4 +73,9 @@ public interface SysUserService {
      * height:用户组深度,小于等于0时遍历返回所有节点
      */
     public void queryUserGroupChildrens(SysProjectUserGroup sysProjectUserGroup,int height);
+   
+    public SysUserProject assignUserToProject();
+    public void deleteUserFromProject(Long userId,Long projectId);
+    public SysUserProject updateUserProjectType(SysUserProject sysUserProject);
+	
 }

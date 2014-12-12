@@ -1,5 +1,7 @@
 package com.cj.uaap.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +49,7 @@ public class SysUserServiceImpl implements SysUserService {
 	}
 
 	@Override
-	public SysUser findOne(Long userId) {
+	public SysUser findSysUser(Long userId) {
 		return this.sysUserMapper.selectByPrimaryKey(userId);
 	}
 
@@ -75,6 +77,26 @@ public class SysUserServiceImpl implements SysUserService {
 	public SysProjectUserGroup findSysProjectUserGroup(Long userId) {
 		return this.sysProjectUserGroupMapper.selectByPrimaryKey(userId);
 	}
+	@Override
+	public List<SysProjectUserGroup> queryUserGroupChildrens(
+			Long projectUserGroupId, int height) {
+		int curentHeight =0;
+		List<SysProjectUserGroup> list = this.sysProjectUserGroupMapper.queryByparentId(projectUserGroupId);
+		curentHeight++;
+		if(curentHeight<height||height<=0){
+			for(SysProjectUserGroup sysProjectUserGroup:list){
+				sysProjectUserGroup.setChildrens(this.queryUserGroupChildrens(sysProjectUserGroup.getProjectUserGroupId(), height-1));
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public void queryUserGroupChildrens(
+			SysProjectUserGroup sysProjectUserGroup, int height) {
+		List<SysProjectUserGroup> childrens = this.queryUserGroupChildrens(sysProjectUserGroup.getProjectUserGroupId(), height);
+		sysProjectUserGroup.setChildrens(childrens);
+	}
 	public SysUserMapper getSysUserMapper() {
 		return sysUserMapper;
 	}
@@ -91,5 +113,4 @@ public class SysUserServiceImpl implements SysUserService {
 			SysProjectUserGroupMapper sysProjectUserGroupMapper) {
 		this.sysProjectUserGroupMapper = sysProjectUserGroupMapper;
 	}
-
 }
