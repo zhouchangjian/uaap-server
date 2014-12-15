@@ -21,7 +21,11 @@
     delete from SYS_USER_PROJECT
     where USER_PROJECT_ID = #{userProjectId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.cj.uaap.entity.SysUserProject" >
+  <delete id="deleteByUserIdAndProjectId" parameterType="java.util.Map">
+    delete from SYS_USER_PROJECT
+    where USER_ID = #{userId,jdbcType=BIGINT} and PROJECT_ID = #{projectId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cj.uaap.entity.SysUserProject" useGeneratedKeys="true" keyProperty="userProjectId">
     insert into SYS_USER_PROJECT (USER_PROJECT_ID, USER_ID, PROJECT_ID, 
       USER_PROJECT_TYPE, PROJECT_USER_GROUP_ID)
     values (#{userProjectId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, 

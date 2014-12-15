@@ -74,8 +74,23 @@ public interface SysProjectService {
      */
     public void queryUserGroupChildrens(SysProjectUserGroup sysProjectUserGroup,int height);
    
-    public SysUserProject assignUserToProject();
+    /**
+     * 作者：z_changjiang
+     * 日期：2014-12-13
+     * 描述：指派用户到项目
+     */
+    public SysUserProject assignUserToProject(SysUserProject sysUserProject);
+    /**
+     * 作者：z_changjiang
+     * 日期：2014-12-13
+     * 描述：将用户从某个项目中删除
+     */
     public void deleteUserFromProject(Long userId,Long projectId);
-    public SysUserProject updateUserProjectType(SysUserProject sysUserProject);
-	
+    /**
+     * 作者：z_changjiang
+     * 日期：2014-12-15
+     * 描述：修改用户项目
+     */
+	SysUserProject updateUserProject(SysUserProject sysUserProject);
+    
 }

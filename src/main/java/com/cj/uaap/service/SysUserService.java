@@ -54,39 +54,4 @@ public interface SysUserService {
      * 描述：根据用户名称查询用户
      */
     public SysUser findByUsername(String username);
-    
-    /**
-     * 作者：z_changjiang
-     * 日期：2014年12月11日
-     * 描述：创建用户组
-     */
-    public SysProjectUserGroup createSysProjectUserGroup(SysProjectUserGroup sysProjectUserGroup);
-    /**
-     * 作者：z_changjiang
-     * 日期：2014年12月11日
-     * 描述：修改用户组
-     */
-    public SysProjectUserGroup updateSysProjectUserGroup(SysProjectUserGroup sysProjectUserGroup);
-    /**
-     * 作者：z_changjiang
-     * 日期：2014年12月11日
-     * 描述：查询用户组
-     */
-    public SysProjectUserGroup findSysProjectUserGroup(Long projectUserGroupId);
-    /**
-     * 作者：z_changjiang
-     * 日期：2014-12-12
-     * 描述：查询指定用户的下级用户
-     * projectUserGroupId：用户组标志
-     * height：用户组深度,小于等于0时遍历返回所有节点
-     */
-    public List<SysProjectUserGroup> queryUserGroupChildrens(Long projectUserGroupId,int height);
-    /**
-     * 作者：z_changjiang
-     * 日期：2014-12-12
-     * 描述：查询指定用户的下级用户
-     * sysProjectUserGroup:用户组信息
-     * height:用户组深度,小于等于0时遍历返回所有节点
-     */
-    public void queryUserGroupChildrens(SysProjectUserGroup sysProjectUserGroup,int height);
 }
