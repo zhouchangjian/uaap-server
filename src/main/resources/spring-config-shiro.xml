@@ -119,7 +119,7 @@
                 /authorize=anon
                 /accessToken=anon
                 /userInfo=anon
-                /authenticated = authc
+                /doit=roles[admin]
                 /** = user,sysUser
             </value>
         </property>

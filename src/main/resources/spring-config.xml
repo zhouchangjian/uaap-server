@@ -13,29 +13,41 @@
           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:property-placeholder location="classpath:resources.properties"/>
-
     <!-- 扫描注解Bean -->
     <context:component-scan base-package="com.cj.uaap">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-
     <!-- 开启AOP监听 只对当前配置文件有效 -->
     <aop:aspectj-autoproxy expose-proxy="true"/>
-
-
     <!-- 数据源 -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+    <bean id="dataSource_beforjdbclog" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 			<property name="driverClass" value="${jdbc.driver}" />
 			<property name="url" value="${jdbc.url}" />
 			<property name="username" value="${jdbc.username}" />
 			<property name="password" value="${jdbc.password}" />
 	</bean>
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="dataSource_beforjdbclog" />
+    </bean>
 	<!-- 初始化数据表结构 与默认数据-->
 	<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
 			<jdbc:script location="classpath:sql/h2/uaap-schema.sql" />
-			<jdbc:script location="classpath:sql/h2/uaap-data.sql" encoding="UTF-8"/>
+			<!--<jdbc:script location="classpath:sql/h2/uaap-data.sql" encoding="UTF-8"/>-->
 	</jdbc:initialize-database>
 
+	<!-- MyBatis配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+		<property name="typeAliasesPackage" value="com.cj.uaap.entity" />
+		<!-- 显式指定Mapper文件位置 -->
+		<property name="mapperLocations" value="classpath:/mybatis/*Mapper.xml" />
+	</bean>
+	<!-- 扫描basePackage下所有以@MyBatisRepository标识的 接口-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.cj.uaap.dao" />
+		<property name="annotationClass" value=" com.cj.uaap.dao.MyBatisRepository"/>
+	</bean>
     <bean id="dataSourceProxy" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
         <property name="targetDataSource" ref="dataSource"/>
     </bean>

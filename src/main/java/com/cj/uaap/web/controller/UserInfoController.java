@@ -12,6 +12,8 @@ import org.apache.oltu.oauth2.common.message.types.ParameterStyle;
 import org.apache.oltu.oauth2.common.utils.OAuthUtils;
 import org.apache.oltu.oauth2.rs.request.OAuthAccessResourceRequest;
 import org.apache.oltu.oauth2.rs.response.OAuthRSResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,26 +26,28 @@ import com.cj.uaap.Constants;
 import com.cj.uaap.service.OAuthService;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-16
- * <p>Version: 1.0
+ * 作者：z_changjiang
+ * 日期：2014-12-20
+ * 描述：资源服务器，通过AccessToken获取授权资源
  */
 @RestController
 public class UserInfoController {
 
+	Logger loger = LoggerFactory.getLogger(UserInfoController.class);
     @Autowired
     private OAuthService oAuthService;
 
     @RequestMapping("/userInfo")
     public HttpEntity userInfo(HttpServletRequest request) throws OAuthSystemException {
         try {
-
+            loger.info("根据AccessToken请求资源开始");
             //构建OAuth资源请求
             OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(request, ParameterStyle.QUERY);
             //获取Access Token
             String accessToken = oauthRequest.getAccessToken();
-
+            loger.info("根据AccessToken请求资源，accessToken："+accessToken);
             //验证Access Token
+            loger.info("根据AccessToken请求资源，校验AccessToken开始");
             if (!oAuthService.checkAccessToken(accessToken)) {
                 // 如果不存在/过期了，返回未验证错误，需重新验证
                 OAuthResponse oauthResponse = OAuthRSResponse
@@ -56,8 +60,10 @@ public class UserInfoController {
                 headers.add(OAuth.HeaderType.WWW_AUTHENTICATE, oauthResponse.getHeader(OAuth.HeaderType.WWW_AUTHENTICATE));
                 return new ResponseEntity(headers, HttpStatus.UNAUTHORIZED);
             }
+            loger.info("根据AccessToken请求资源，校验AccessToken结束");
             //返回用户名
             String username = oAuthService.getUsernameByAccessToken(accessToken);
+            loger.info("根据AccessToken请求资源，用户名称为："+username);
             return new ResponseEntity(username, HttpStatus.OK);
         } catch (OAuthProblemException e) {
             //检查是否设置了错误码
